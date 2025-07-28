@@ -1,0 +1,9 @@
+{
+  ...
+}:
+{
+  imports = [
+    ./nginx
+    ./suricata
+  ];
+}
