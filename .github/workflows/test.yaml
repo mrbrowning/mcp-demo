@@ -1,0 +1,21 @@
+name: "Check NixOS flake"
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "checkout PR branch"
+        uses: actions/checkout@v4
+        with:
+          repository: mrbrowning/mcp-demo
+          token: ${{ secrets.CHECKOUT }}
+      - name: "Install nix"
+        uses: https://git.madhouse-project.org/actions/nix/install@main
+        with:
+          install-url: "https://nixos.org/nix/install"
+      - name: "Check flake"
+        run: nix flake check
